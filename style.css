@@ -1887,3 +1887,193 @@ textarea { resize:vertical; }
     transform: translateY(-2px);
     transition: all 0.3s ease;
 }
+
+/* ============================================================
+   CERTIFICATE THUMBNAILS & LIGHTBOX PREVIEW
+   ============================================================ */
+.cert-card {
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.cert-thumb-box {
+    width: 100%;
+    height: 180px;
+    background: var(--bg-inset);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+}
+.cert-img-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform var(--t-mid) var(--ease);
+}
+.cert-card:hover .cert-img-thumb {
+    transform: scale(1.05);
+}
+
+/* Lightbox Modal */
+.lightbox-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(10, 10, 12, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease);
+}
+.lightbox-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.lightbox-content {
+    position: relative;
+    max-width: 860px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.lightbox-close {
+    position: absolute;
+    top: -44px;
+    right: 0;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2.2rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+.lightbox-close:hover {
+    color: var(--indigo);
+}
+.cert-lightbox-img {
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    border: 1px solid var(--border-acc);
+}
+.cert-lightbox-caption {
+    margin-top: 14px;
+    font-size: 0.925rem;
+    font-weight: 500;
+    color: var(--tx-high);
+    text-align: center;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN SYSTEM (320px to 1920px) — ZERO OVERFLOW
+   ============================================================ */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+.container {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        text-align: center;
+    }
+    .hero-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .hero-bio {
+        max-width: 100%;
+    }
+    .hero-actions {
+        justify-content: center;
+    }
+    .hero-stats {
+        justify-content: center;
+    }
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 14px 0;
+    }
+    .nav-links {
+        display: none;
+    }
+    .hamburger {
+        display: flex;
+    }
+    .hero {
+        padding: 100px 0 60px;
+        min-height: auto;
+    }
+    .hero-name {
+        font-size: clamp(2.5rem, 9vw, 4rem);
+    }
+    .photo-frame {
+        width: 260px;
+        height: 300px;
+    }
+    .photo-badge {
+        font-size: 0.775rem;
+        padding: 7px 16px;
+        bottom: -12px;
+    }
+    .projects-grid, .skills-grid, .certs-grid {
+        grid-template-columns: 1fr;
+    }
+    .container {
+        padding: 0 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-name {
+        font-size: 2.2rem;
+    }
+    .hero-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+    .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    .hero-stats {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+    .stat-divider {
+        display: none;
+    }
+    .photo-frame {
+        width: 220px;
+        height: 260px;
+    }
+}
+

@@ -1330,3 +1330,75 @@ if (quoteSlides.length > 0) {
         quoteSlides[currentQuote].classList.add('active');
     }, 4000); 
 }
+
+// Mobile Menu Handler
+const hamburgerBtn = document.getElementById('hamburger');
+const mobileMenuEl = document.getElementById('mobile-menu');
+const mobileLinks  = document.querySelectorAll('.mobile-link');
+
+function toggleMobileMenu() {
+    if (!mobileMenuEl || !hamburgerBtn) return;
+    const isOpen = mobileMenuEl.classList.contains('open');
+    if (isOpen) {
+        mobileMenuEl.classList.remove('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+    } else {
+        mobileMenuEl.classList.add('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'true');
+    }
+}
+
+if (hamburgerBtn) hamburgerBtn.addEventListener('click', toggleMobileMenu);
+mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        if (mobileMenuEl) mobileMenuEl.classList.remove('open');
+        if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'false');
+    });
+});
+
+// Certificate Image Lightbox Handler
+const certCardsList = document.querySelectorAll('.cert-card');
+const certLightboxEl = document.getElementById('cert-lightbox-modal');
+const certLightboxImg = document.getElementById('cert-lightbox-img');
+const certLightboxCaption = document.getElementById('cert-lightbox-caption');
+const closeCertLightboxBtn = document.getElementById('close-cert-lightbox');
+
+certCardsList.forEach(card => {
+    card.addEventListener('click', () => {
+        const imgSrc = card.getAttribute('data-cert-img');
+        const title = card.getAttribute('data-cert-title') || card.querySelector('.cert-title')?.textContent || 'Certificate Preview';
+        if (imgSrc && certLightboxEl && certLightboxImg) {
+            certLightboxImg.src = imgSrc;
+            if (certLightboxCaption) certLightboxCaption.textContent = title;
+            certLightboxEl.classList.add('active');
+            certLightboxEl.setAttribute('aria-hidden', 'false');
+        }
+    });
+});
+
+if (closeCertLightboxBtn && certLightboxEl) {
+    closeCertLightboxBtn.addEventListener('click', () => {
+        certLightboxEl.classList.remove('active');
+        certLightboxEl.setAttribute('aria-hidden', 'true');
+    });
+}
+if (certLightboxEl) {
+    certLightboxEl.addEventListener('click', (e) => {
+        if (e.target === certLightboxEl) {
+            certLightboxEl.classList.remove('active');
+            certLightboxEl.setAttribute('aria-hidden', 'true');
+        }
+    });
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        if (certLightboxEl) {
+            certLightboxEl.classList.remove('active');
+            certLightboxEl.setAttribute('aria-hidden', 'true');
+        }
+        if (mobileMenuEl) mobileMenuEl.classList.remove('open');
+        if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'false');
+    }
+});
+
