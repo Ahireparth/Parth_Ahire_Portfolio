@@ -2125,6 +2125,25 @@ html, body {
     letter-spacing: 0.1em;
     color: var(--indigo);
 }
+.cert-doc-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(79, 70, 229, 0.18);
+    color: var(--indigo);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(79, 70, 229, 0.3);
+}
+.cert-thumb-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 
 
