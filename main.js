@@ -90,7 +90,7 @@ document.getElementById('contact-form')?.addEventListener('submit', e => {
 (function initPhotoCarousels() {
     const carousels = [
         { selector: '.photo-slide', interval: 2000 },
-        { selector: '.about-photo-slide', interval: 3000 }
+        { selector: '.about-photo-slide', interval: 5000 }
     ];
 
     carousels.forEach(carousel => {
@@ -1339,16 +1339,17 @@ mobileLinks.forEach(link => {
 });
 
 // Certificate Image Lightbox Handler
-const certCardsList = document.querySelectorAll('.cert-card');
+const certCardsList = document.querySelectorAll('.cert-card, [data-cert-img]');
 const certLightboxEl = document.getElementById('cert-lightbox-modal');
 const certLightboxImg = document.getElementById('cert-lightbox-img');
 const certLightboxCaption = document.getElementById('cert-lightbox-caption');
 const closeCertLightboxBtn = document.getElementById('close-cert-lightbox');
 
 certCardsList.forEach(card => {
-    card.addEventListener('click', () => {
-        const imgSrc = card.getAttribute('data-cert-img');
-        const title = card.getAttribute('data-cert-title') || card.querySelector('.cert-title')?.textContent || 'Certificate Preview';
+    card.addEventListener('click', (e) => {
+        const target = e.currentTarget;
+        const imgSrc = target.getAttribute('data-cert-img');
+        const title = target.getAttribute('data-cert-title') || target.querySelector('.cert-title')?.textContent || 'Certificate Preview';
         if (imgSrc && certLightboxEl && certLightboxImg) {
             certLightboxImg.src = imgSrc;
             if (certLightboxCaption) certLightboxCaption.textContent = title;
