@@ -90,7 +90,7 @@ document.getElementById('contact-form')?.addEventListener('submit', e => {
 (function initPhotoCarousels() {
     const carousels = [
         { selector: '.photo-slide', interval: 2000 },
-        { selector: '.about-photo-slide', interval: 5000 }
+        { selector: '.about-photo-slide', interval: 3000 }
     ];
 
     carousels.forEach(carousel => {
