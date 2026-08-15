@@ -2061,4 +2061,70 @@ html, body {
     font-size: 1.1rem;
 }
 
+/* ============================================================
+   ABOUT 2-BOX LAYOUT
+   ============================================================ */
+.about-boxes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+}
+.about-info-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: transform var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+}
+.about-info-box:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-acc);
+}
+.about-box-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+}
+.about-box-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--tx-high);
+    margin-bottom: 2px;
+}
+.about-box-sub {
+    font-size: 0.8rem;
+    color: var(--tx-mid);
+}
+
+@media (max-width: 640px) {
+    .about-boxes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================================
+   CERTIFICATE CARD DOCUMENT HEADER (Zero Personal Photos)
+   ============================================================ */
+.cert-doc-header {
+    background: rgba(79, 70, 229, 0.08);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.cert-doc-icon {
+    font-size: 1.2rem;
+}
+.cert-doc-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--indigo);
+}
+
+
 
