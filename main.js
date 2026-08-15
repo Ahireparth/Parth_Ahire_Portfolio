@@ -1,5 +1,8 @@
 // ===== YEAR =====
-document.getElementById('year').textContent = new Date().getFullYear();
+const yearEl = document.getElementById('year');
+if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+}
 
 // ===== CUSTOM CURSOR =====
 const dot  = document.getElementById('cursor-dot');
@@ -1057,6 +1060,7 @@ function showConfigNotice() {
 
 // Main fetch
 async function loadGitHubRepos() {
+    if (!ghGrid || !ghStatus) return;
     if (GITHUB_USERNAME === 'YOUR_GITHUB_USERNAME') {
         showConfigNotice();
         return;
