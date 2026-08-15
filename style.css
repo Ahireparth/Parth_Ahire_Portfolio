@@ -2077,3 +2077,19 @@ html, body {
     }
 }
 
+/* Subsection Labels for Internships and Achievements */
+.exp-subsection-label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--tx-high);
+    letter-spacing: 0.05em;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.exp-sub-icon {
+    font-size: 1.1rem;
+}
+
+
