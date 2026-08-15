@@ -1338,10 +1338,11 @@ mobileLinks.forEach(link => {
     });
 });
 
-// Certificate Image Lightbox Handler
+// Certificate Image & Document Lightbox Handler
 const certCardsList = document.querySelectorAll('.cert-card, [data-cert-img]');
 const certLightboxEl = document.getElementById('cert-lightbox-modal');
 const certLightboxImg = document.getElementById('cert-lightbox-img');
+const certLightboxPdf = document.getElementById('cert-lightbox-pdf');
 const certLightboxCaption = document.getElementById('cert-lightbox-caption');
 const closeCertLightboxBtn = document.getElementById('close-cert-lightbox');
 
@@ -1350,8 +1351,20 @@ certCardsList.forEach(card => {
         const target = e.currentTarget;
         const imgSrc = target.getAttribute('data-cert-img');
         const title = target.getAttribute('data-cert-title') || target.querySelector('.cert-title')?.textContent || 'Certificate Preview';
-        if (imgSrc && certLightboxEl && certLightboxImg) {
-            certLightboxImg.src = imgSrc;
+        if (imgSrc && certLightboxEl) {
+            if (imgSrc.endsWith('.pdf')) {
+                if (certLightboxPdf) {
+                    certLightboxPdf.src = imgSrc;
+                    certLightboxPdf.style.display = 'block';
+                }
+                if (certLightboxImg) certLightboxImg.style.display = 'none';
+            } else {
+                if (certLightboxImg) {
+                    certLightboxImg.src = imgSrc;
+                    certLightboxImg.style.display = 'block';
+                }
+                if (certLightboxPdf) certLightboxPdf.style.display = 'none';
+            }
             if (certLightboxCaption) certLightboxCaption.textContent = title;
             certLightboxEl.classList.add('active');
             certLightboxEl.setAttribute('aria-hidden', 'false');
@@ -1363,6 +1376,7 @@ if (closeCertLightboxBtn && certLightboxEl) {
     closeCertLightboxBtn.addEventListener('click', () => {
         certLightboxEl.classList.remove('active');
         certLightboxEl.setAttribute('aria-hidden', 'true');
+        if (certLightboxPdf) certLightboxPdf.src = '';
     });
 }
 if (certLightboxEl) {
@@ -1370,6 +1384,7 @@ if (certLightboxEl) {
         if (e.target === certLightboxEl) {
             certLightboxEl.classList.remove('active');
             certLightboxEl.setAttribute('aria-hidden', 'true');
+            if (certLightboxPdf) certLightboxPdf.src = '';
         }
     });
 }
